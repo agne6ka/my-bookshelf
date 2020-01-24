@@ -1,27 +1,46 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import * as BooksAPI from './BooksAPI'
+import {ThemeProvider} from "@material-ui/styles";
+import {createMuiTheme, CssBaseline} from "@material-ui/core";
+import {Route} from 'react-router-dom';
+import SearchResults from "./SearchResults";
+import SearchInput from "./SearchInput";
+import Navigation from "./Navigation";
+import Shelf from "./Shelf";
 import './App.css';
+
+const theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main: '#212121',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#009688',
+      contrastText: '#fff',
+    }
+  }
+});
 
 class BooksApp extends Component {
   render() {
     console.log(BooksAPI.getAll());
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <ThemeProvider theme={theme}>
+          <CssBaseline/>
+          <Navigation/>
+          <Route exact path='/' render={() => (
+            <Shelf/>
+          )}/>
+          <Route exact path='/search' render={() => (
+            <>
+              <SearchInput/>
+              <SearchResults/>
+            </>
+          )}/>
+        </ThemeProvider>
       </div>
     );
   }
