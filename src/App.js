@@ -31,7 +31,7 @@ class BooksApp extends Component {
         <ThemeProvider theme={theme}>
           <CssBaseline/>
           <Navigation/>
-          <Route exact path='/' render={() => (
+          <Route exact path='/my-bookshelf' render={() => (
             <Shelf/>
           )}/>
           <Route exact path='/search' render={() => (

@@ -24,7 +24,7 @@ const Navigation = () => {
 
   return (
     <div className={classes.root}>
-      <Route exact path='/' render={() => (
+      <Route exact path='/my-bookshelf' render={() => (
         <AppBar position="static">
           <Toolbar>
             <Typography className={classes.title} variant="h6" noWrap>
@@ -44,7 +44,7 @@ const Navigation = () => {
             <Typography className={classes.title} variant="h6" noWrap>
               SEARCH RESULTS
             </Typography>
-            <Link to="/">
+            <Link to="/my-bookshelf">
               <Fab color="secondary" aria-label="back">
                 <ArrowBackIcon/>
               </Fab>
