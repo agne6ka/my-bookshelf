@@ -31,10 +31,10 @@ class BooksApp extends Component {
         <ThemeProvider theme={theme}>
           <CssBaseline/>
           <Navigation/>
-          <Route exact path='/my-bookshelf' render={() => (
+          <Route exact path={['/', '/my-bookshelf']} render={() => (
             <Shelf/>
           )}/>
-          <Route exact path='/search' render={() => (
+          <Route path='/search' render={() => (
             <>
               <SearchInput/>
               <SearchResults/>

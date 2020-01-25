@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {Card, CardMedia, CardContent, Typography, CardActions, IconButton} from "@material-ui/core";
+import Drawer from '@material-ui/core/Drawer';
+import Bookmark from "./Bookmark";
 import clsx from 'clsx';
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-  Collapse,
-  Fab,
-  IconButton
-} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -21,14 +14,20 @@ const useStyles = makeStyles(theme => ({
 
   },
   cardContent: {
-    backgroundColor: 'rgba(33,33,33,0.9)'
+    backgroundColor: 'rgba(33,33,33,0.9)',
+    minHeight: 50
   },
   media: {
     maxHeight: 350,
     paddingTop: '56.25%', // 16:9
+    position: 'relative'
   },
   expand: {
     transform: 'rotate(0deg)',
+    zIndex: 10,
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
     backgroundColor: '#80CBC4',
     "&:hover": { backgroundColor: "#598e89" },
     marginLeft: 'auto',
@@ -37,19 +36,43 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   expandOpen: {
+    zIndex: 10,
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
     transform: 'rotate(180deg)',
     backgroundColor: '#80CBC4',
     "&:hover": { backgroundColor: "#598e89" }
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+  drawer: {
+    width: '100%',
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: '100%',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 5
   },
 }));
 
 const BookCard = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const handleExpandClick = () => {
+  const toggleDrawer = () => {
+    open ? setOpen(false) : setOpen(true);
     setExpanded(!expanded);
   };
+
 
   return (
     <Card className={classes.card}>
@@ -69,21 +92,27 @@ const BookCard = () => {
         <CardActions className={classes.cardContent} disableSpacing>
           <IconButton
             className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
+             [classes.expandOpen]: expanded,
             })}
-            onClick={handleExpandClick}
+            onClick={toggleDrawer}
             aria-expanded={expanded}
             aria-label="show more"
           >
             <ExpandMoreIcon/>
           </IconButton>
         </CardActions>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="right"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <Bookmark/>
+        </Drawer>
       </CardMedia>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-        </CardContent>
-      </Collapse>
     </Card>
   );
 };
