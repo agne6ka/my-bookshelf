@@ -1,16 +1,25 @@
 import React, {Component} from 'react';
-import Navigation from "./Navigation";
 import SearchResults from "./SearchResults";
 import SearchInput from "./SearchInput";
+import * as BooksAPI from "./BooksAPI";
 
 
 class Search extends Component {
+  state = {
+    books: []
+  };
+
+  componentDidMount() {
+    const books = BooksAPI.search('Design');
+
+    books.then((books)=>{this.setState({books})});
+  }
+
   render() {
     return (
       <>
-        <Navigation/>
         <SearchInput/>
-        <SearchResults/>
+        <SearchResults books={this.state.books}/>
       </>
     );
   }

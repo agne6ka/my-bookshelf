@@ -9,13 +9,12 @@ import clsx from 'clsx';
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 345,
-    textAlign: 'left',
     margin: 'auto',
 
   },
   cardContent: {
     backgroundColor: 'rgba(33,33,33,0.9)',
-    minHeight: 50
+    minHeight: 70
   },
   media: {
     maxHeight: 350,
@@ -63,30 +62,30 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const BookCard = () => {
+const BookCard = ({book}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
+  const image =  book.imageLinks ? `${book.imageLinks.smallThumbnail.split('zoom=')[0]}zoom=3` : '';
 
   const toggleDrawer = () => {
     open ? setOpen(false) : setOpen(true);
     setExpanded(!expanded);
   };
 
-
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
-        image="http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=10&source=gbs_api"
-        title="The Linux Command Line"
+        image={image}
+        title={book.title}
       >
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-            The Linux Command Line
+            {book.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            William E. Shotts, Jr.
+            {book.authors.map((author) => ` ${author}`)}
           </Typography>
         </CardContent>
         <CardActions className={classes.cardContent} disableSpacing>

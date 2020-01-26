@@ -13,37 +13,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SearchResults = () => {
+const SearchResults = ({books}) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Grid container justify="space-around" className={classes.spacing}>
         <Grid container item xs={12} spacing={5}>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <BookCard/>
-          </Grid>
+          {
+            books.map((book, index) => {
+              return (
+                <Grid key={index} item xs={12} sm={6} lg={3}>
+                  <BookCard book={book}/>
+                </Grid>
+              )
+            })
+          }
         </Grid>
       </Grid>
     </div>

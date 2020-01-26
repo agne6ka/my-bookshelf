@@ -3,9 +3,8 @@ import * as BooksAPI from './BooksAPI'
 import {ThemeProvider} from "@material-ui/styles";
 import {createMuiTheme, CssBaseline} from "@material-ui/core";
 import {Route} from 'react-router-dom';
-import SearchResults from "./SearchResults";
-import SearchInput from "./SearchInput";
 import Navigation from "./Navigation";
+import Search from "./Search";
 import Shelf from "./Shelf";
 import './App.css';
 
@@ -24,21 +23,27 @@ const theme = createMuiTheme({
 });
 
 class BooksApp extends Component {
+  state = {data: []};
+
+  componentDidMount() {
+    const books = BooksAPI.getAll();
+
+    books.then((data) => {
+      this.setState({data})
+    })
+  }
+
   render() {
-    console.log(BooksAPI.getAll());
     return (
       <div className="App">
         <ThemeProvider theme={theme}>
           <CssBaseline/>
           <Navigation/>
           <Route exact path={['/', '/my-bookshelf']} render={() => (
-            <Shelf/>
+            <Shelf books={this.state.data}/>
           )}/>
           <Route path='/search' render={() => (
-            <>
-              <SearchInput/>
-              <SearchResults/>
-            </>
+            <Search books={this.state.data}/>
           )}/>
         </ThemeProvider>
       </div>
