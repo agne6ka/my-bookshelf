@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/my-bookshelf/static/css/main.3af63f23.chunk.css",
-    "main.js": "/my-bookshelf/static/js/main.6510aa37.chunk.js",
-    "main.js.map": "/my-bookshelf/static/js/main.6510aa37.chunk.js.map",
+    "main.js": "/my-bookshelf/static/js/main.3e17c3a8.chunk.js",
+    "main.js.map": "/my-bookshelf/static/js/main.3e17c3a8.chunk.js.map",
     "runtime-main.js": "/my-bookshelf/static/js/runtime-main.799e26c9.js",
     "runtime-main.js.map": "/my-bookshelf/static/js/runtime-main.799e26c9.js.map",
     "static/js/2.a6ac33f7.chunk.js": "/my-bookshelf/static/js/2.a6ac33f7.chunk.js",
     "static/js/2.a6ac33f7.chunk.js.map": "/my-bookshelf/static/js/2.a6ac33f7.chunk.js.map",
     "index.html": "/my-bookshelf/index.html",
-    "precache-manifest.06626218fabcee75ae424da8cec95c84.js": "/my-bookshelf/precache-manifest.06626218fabcee75ae424da8cec95c84.js",
+    "precache-manifest.af8f0d68bd9bd6fe07a24e4d6bf0d312.js": "/my-bookshelf/precache-manifest.af8f0d68bd9bd6fe07a24e4d6bf0d312.js",
     "service-worker.js": "/my-bookshelf/service-worker.js",
     "static/css/main.3af63f23.chunk.css.map": "/my-bookshelf/static/css/main.3af63f23.chunk.css.map",
     "static/js/2.a6ac33f7.chunk.js.LICENSE": "/my-bookshelf/static/js/2.a6ac33f7.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.799e26c9.js",
     "static/js/2.a6ac33f7.chunk.js",
     "static/css/main.3af63f23.chunk.css",
-    "static/js/main.6510aa37.chunk.js"
+    "static/js/main.3e17c3a8.chunk.js"
   ]
 }
