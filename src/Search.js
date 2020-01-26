@@ -6,20 +6,32 @@ import * as BooksAPI from "./BooksAPI";
 
 class Search extends Component {
   state = {
-    books: []
+    resp: [],
+    value: ''
   };
 
-  componentDidMount() {
-    const books = BooksAPI.search('Design');
+  onSearch = (value) => {
+    this.setState({value});
+    (value.length > 0) ? this.showBooks(value) : this.setState({resp: []});
+  };
 
-    books.then((books)=>{this.setState({books})});
-  }
+  showBooks = (value) => {
+    const booksSearch = BooksAPI.search(value);
+
+    booksSearch
+      .then((resp) => {
+        if(resp === undefined) return null;
+        resp.error ? this.setState({resp: []}) : this.setState({resp})
+      })
+  };
 
   render() {
     return (
       <>
-        <SearchInput/>
-        <SearchResults books={this.state.books}/>
+        <SearchInput query={this.state.value} onSearch={this.onSearch}/>
+        {
+          <SearchResults books={this.state.resp}/>
+        }
       </>
     );
   }

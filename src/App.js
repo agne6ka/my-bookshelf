@@ -35,7 +35,7 @@ class BooksApp extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <ThemeProvider theme={theme}>
           <CssBaseline/>
           <Navigation/>

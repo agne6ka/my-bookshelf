@@ -40,8 +40,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SearchInput = () => {
+const SearchInput = ({query, onSearch}) => {
   const classes = useStyles();
+  const updateSearch = (e) => onSearch(e.target.value);
+
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -54,6 +56,8 @@ const SearchInput = () => {
           input: classes.inputInput,
         }}
         inputProps={{'aria-label': 'search'}}
+        value={query}
+        onChange={updateSearch}
       />
     </div>
   )
