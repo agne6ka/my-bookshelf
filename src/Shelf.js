@@ -20,6 +20,14 @@ const useStyles = makeStyles(theme => ({
 
 const Shelf = ({books}) => {
   const classes = useStyles();
+  let reading = [], wantToRead= [], read = [];
+
+  books.filter((book) => {
+    if (book.shelf === 'currentlyReading') reading.push(book);
+    if (book.shelf === 'wantToRead') wantToRead.push(book);
+    if (book.shelf === 'read') read.push(book);
+    return true;
+  });
 
   return (
     <div className={classes.root}>
@@ -31,7 +39,43 @@ const Shelf = ({books}) => {
       <Grid container justify="space-around" className={classes.spacing}>
         <Grid container item xs={12} spacing={5}>
           {
-            books.map((book, index) => {
+            reading.map((book, index) => {
+              return (
+                <Grid key={index} item xs={12} sm={6} lg={3}>
+                  <BookCard book={book}/>
+                </Grid>
+              )
+            })
+          }
+        </Grid>
+      </Grid>
+      <Grid container className={classes.spacing}>
+        <Typography gutterBottom variant="h5" component="h2" className={classes.typography}>
+          Want to read
+        </Typography>
+      </Grid>
+      <Grid container justify="space-around" className={classes.spacing}>
+        <Grid container item xs={12} spacing={5}>
+          {
+            wantToRead.map((book, index) => {
+              return (
+                <Grid key={index} item xs={12} sm={6} lg={3}>
+                  <BookCard book={book}/>
+                </Grid>
+              )
+            })
+          }
+        </Grid>
+      </Grid>
+      <Grid container className={classes.spacing}>
+        <Typography gutterBottom variant="h5" component="h2" className={classes.typography}>
+          Read
+        </Typography>
+      </Grid>
+      <Grid container justify="space-around" className={classes.spacing}>
+        <Grid container item xs={12} spacing={5}>
+          {
+            read.map((book, index) => {
               return (
                 <Grid key={index} item xs={12} sm={6} lg={3}>
                   <BookCard book={book}/>
