@@ -26,12 +26,21 @@ class BooksApp extends Component {
   state = {data: []};
 
   componentDidMount() {
+    this.updateBooks();
+  }
+
+  updateBooks = () => {
     const books = BooksAPI.getAll();
 
-    books.then((data) => {
-      this.setState({data})
-    })
-  }
+    books.then(data => this.setState({data}));
+  };
+
+  onBookmarkUpdate = (book, value) => {
+    const bookUpdate = BooksAPI.update(book, value);
+
+    bookUpdate.then(() => this.updateBooks(value))
+      .catch(error => console.log(error))
+  };
 
   render() {
     return (
@@ -40,10 +49,10 @@ class BooksApp extends Component {
           <CssBaseline/>
           <Navigation/>
           <Route exact path={['/', '/my-bookshelf']} render={() => (
-            <Shelf books={this.state.data}/>
+            <Shelf books={this.state.data} onBookmarkUpdate={this.onBookmarkUpdate}/>
           )}/>
           <Route path='/search' render={() => (
-            <Search books={this.state.data}/>
+            <Search bookmarks={this.state.data} onBookmarkUpdate={this.onBookmarkUpdate}/>
           )}/>
         </ThemeProvider>
       </div>

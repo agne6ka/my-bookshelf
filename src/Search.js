@@ -22,16 +22,14 @@ class Search extends Component {
       .then((resp) => {
         if(resp === undefined) return null;
         resp.error ? this.setState({resp: []}) : this.setState({resp})
-      })
+      });
   };
 
   render() {
     return (
       <>
         <SearchInput query={this.state.value} onSearch={this.onSearch}/>
-        {
-          <SearchResults books={this.state.resp}/>
-        }
+        <SearchResults books={this.state.resp} bookmarks={this.props.bookmarks} onBookmarkUpdate={this.props.onBookmarkUpdate}/>
       </>
     );
   }

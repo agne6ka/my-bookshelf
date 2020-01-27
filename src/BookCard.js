@@ -62,10 +62,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const BookCard = ({book}) => {
-  const classes = useStyles();
+const BookCard = ({book, bookmark, onBookmarkUpdate}) => {
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
+  const classes = useStyles();
   const image =  book.imageLinks ? `${book.imageLinks.smallThumbnail.split('zoom=')[0]}zoom=3` : '';
 
   const toggleDrawer = () => {
@@ -85,7 +85,7 @@ const BookCard = ({book}) => {
             {book.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {book.authors.map((author) => ` ${author}`)}
+            {book.authors && book.authors.map((author) => ` ${author}`)}
           </Typography>
         </CardContent>
         <CardActions className={classes.cardContent} disableSpacing>
@@ -109,7 +109,7 @@ const BookCard = ({book}) => {
             paper: classes.drawerPaper,
           }}
         >
-          <Bookmark/>
+          <Bookmark book={book} bookmark={bookmark} onBookmarkUpdate={onBookmarkUpdate} toggleDrawer={toggleDrawer}/>
         </Drawer>
       </CardMedia>
     </Card>

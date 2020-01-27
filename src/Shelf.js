@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Shelf = ({books}) => {
+const Shelf = ({books, onBookmarkUpdate}) => {
   const classes = useStyles();
   let reading = [], wantToRead= [], read = [];
 
@@ -42,7 +42,7 @@ const Shelf = ({books}) => {
             reading.map((book, index) => {
               return (
                 <Grid key={index} item xs={12} sm={6} lg={3}>
-                  <BookCard book={book}/>
+                  <BookCard bookmark={book.shelf} book={book} onBookmarkUpdate={onBookmarkUpdate}/>
                 </Grid>
               )
             })
@@ -60,7 +60,7 @@ const Shelf = ({books}) => {
             wantToRead.map((book, index) => {
               return (
                 <Grid key={index} item xs={12} sm={6} lg={3}>
-                  <BookCard book={book}/>
+                  <BookCard bookmark={book.shelf} book={book} onBookmarkUpdate={onBookmarkUpdate}/>
                 </Grid>
               )
             })
@@ -78,7 +78,7 @@ const Shelf = ({books}) => {
             read.map((book, index) => {
               return (
                 <Grid key={index} item xs={12} sm={6} lg={3}>
-                  <BookCard book={book}/>
+                  <BookCard bookmark={book.shelf} book={book} onBookmarkUpdate={onBookmarkUpdate}/>
                 </Grid>
               )
             })
