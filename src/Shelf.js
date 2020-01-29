@@ -5,7 +5,7 @@ import BookCard from "./BookCard";
 import {Typography} from "@material-ui/core";
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },

@@ -18,7 +18,7 @@ const Bookmark = ({book, bookmark, onBookmarkUpdate, toggleDrawer}) => {
     toggleDrawer();
   };
 
-  useEffect(() => setValue(bookmark));
+  useEffect(() => setValue(bookmark), [bookmark]);
 
   return (
     <>
