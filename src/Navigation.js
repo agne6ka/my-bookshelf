@@ -45,7 +45,7 @@ const Navigation = () => {
             <Typography className={classes.title} variant="h6" noWrap>
               SEARCH RESULTS
             </Typography>
-            <Link to="/my-bookshelf">
+            <Link to="/">
               <Fab color="secondary" aria-label="back">
                 <ArrowBackIcon/>
               </Fab>
